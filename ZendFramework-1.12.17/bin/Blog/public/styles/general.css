@@ -1,0 +1,54 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    margin: 0;
+}
+
+p {
+    margin: 5px 0;
+}
+
+#header {
+    padding: 10px 0;
+    background-color: rgba(0, 0, 0, .25);
+}
+
+.blog-posts {
+    padding: 25px 0;
+}
+
+.blog-posts p {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.blog-story .description {
+    font-size: 20px;
+}
+
+.blog-story .date {
+    font-size: 12px;
+}
+
+.blog-story .title {
+    font-size: 28px;
+}
+
+.blog-post {
+    padding: 20px 0;
+}
+
+.blog-post:nth-of-type(odd) {
+    background-color: rgba(0,0,0, .2);
+}
+
+.form-hidden {
+    display: none;
+    z-index: 10;
+}
+
+.edit-button i {
+    text-decoration: underline;
+    cursor: pointer;
+    color: cornflowerblue;
+}

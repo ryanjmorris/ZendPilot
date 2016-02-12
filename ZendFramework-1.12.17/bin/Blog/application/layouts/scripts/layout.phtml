@@ -1,0 +1,29 @@
+<?php
+$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+$this->headTitle()->setSeparator(' - ');
+$this->headTitle('Blogging Site Tutorial');
+
+echo $this->doctype();
+?>
+<html lang="en">
+<head>
+    <?php echo $this->headMeta(); ?>
+    <?php echo $this->headTitle(); ?>
+
+    <?php echo $this->InlineScript()->appendFile($this->baseUrl().'http://code.jquery.com/jquery-1.12.0.min.js')
+        ->appendFile($this->baseUrl().'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js');
+    ?>
+
+    <?php echo $this->headLink()->appendStylesheet($this->baseUrl().'/styles/general.css')
+        ->appendStylesheet($this->baseUrl()
+            .'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+        ->appendStylesheet($this->baseUrl()
+            ."<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700'rel='stylesheet' type='text/css'>");
+    ?>
+</head>
+<body>
+
+<?php echo $this->layout()->content; ?>
+
+</body>
+</html>

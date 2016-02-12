@@ -1,0 +1,102 @@
+<div class="container-fluid">
+    <div class="create-post">
+        <a href="#">
+            Create new post!
+        </a>
+
+        <div class="blog-submit form-hidden">
+            <?php
+            $this->form->init($this->url());
+            echo $this->form;
+            ?>
+        </div>
+    </div>
+
+    <div class="blog-posts">
+        <p>Recent Blog Posts:</p>
+    </div>
+
+    <div class="blog-story">
+        <?php foreach ($this->entries as $entry): ?>
+            <div class="blog-post">
+                <div class="delete-post">
+                    <form action="<?php echo $this->url(array('action'=>'delete')); ?>" method="post">
+                        <div>
+                            <input type="hidden" name="id" value="<?php echo $entry->id; ?>" />
+                            <input type="submit" name="del" value="Delete Post" />
+                        </div>
+                    </form>
+                </div>
+                <p class="title">
+                    <strong><i><?php echo $this->escape($entry->title) ?></i></strong>
+                </p>
+
+                <p class="description">
+                    <?php echo $this->escape($entry->description) ?>
+                </p>
+
+                <p>
+                    <i>Posted by: <?php echo $this->escape($entry->username) ?></i>
+                    <br/>
+                    <i>Published on: <?php echo $this->escape($entry->datecreated) ?></i>
+                </p>
+
+                <div class="edit-post" data-post="<?php echo $entry->id; ?>">
+                    <div class="edit-button"><i>Edit Blog Post</i></div>
+
+                    <form class="form-hidden" action="<?php echo $this->url(array('action'=>'edit')); ?>" method="post">
+                        <div>
+                            <input type="hidden" name="id" value="<?php echo $entry->id; ?>" />
+                            Title: <div></div><?= $this->formText('title'); ?><div></div>
+                            Username: <div></div><?= $this->formText('user_name'); ?><div></div>
+                            Description: <div></div><?= $this->formTextarea('description'); ?><div></div>
+                            <input type="submit" name="edit" value="Edit Post" />
+                        </div>
+                    </form>
+                </div>
+
+                <div class="add-view-comments" >
+                    <div class="view-comment" data-comment="<?php echo $entry->id; ?>">
+                        <a href="#placeholder">View Comment(s)</a>
+
+                        <div class="blog-comments">
+                        <?php
+                        echo print_r($this->centries);
+                        foreach ($this->centries as $comment):
+                            Zend_Debug::dump($comment);
+                            ?>
+                            <div class="username"><?php echo $comment->user_name; ?></div>
+                            <div class="comment-description"><?php echo $this->escape($comment->description); ?></div>
+                            <div class="date"><?php echo $this->escape($comment->datecreated); ?></div>
+                            <div class="edit">Edit your post!</div>
+                        <?php endforeach; ?>
+                        </div>
+                    </div>
+
+                    <div class="add-comment" data-newcomment="<?php echo $entry->id; ?>">
+                        <a href="#placeholder">Add Comment</a>
+
+                        <div class="blog-submit form-hidden">
+                            <form action="<?php echo $this->url(array('action'=>'comment')); ?>" method="post">
+                                <div>
+                                    <input type="hidden" name="id" value="<?php echo $entry->id; ?>" />
+                                    Username: <div></div><?= $this->formText('user_name'); ?><div></div>
+                                    Description: <div></div><?= $this->formTextarea('description'); ?><div></div>
+                                    <input type="submit" name="pcomment" value="Post Comment" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        <?php endforeach ?>
+    </div>
+</div>
+
+<script>
+    <?php echo $this->InlineScript()->appendFile($this->baseUrl().'http://code.jquery.com/jquery-1.12.0.min.js')
+        ->appendFile($this->baseUrl().'/script/interface.js')
+        ->appendFile($this->baseUrl().'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js');
+    ?>
+</script>
